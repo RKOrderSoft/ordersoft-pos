@@ -1,6 +1,8 @@
 ﻿Imports OrderSoft
 Imports System.Windows.Threading
 
+' list box stuff https://www.tutorialspoint.com/vb.net/vb.net_listbox.htm
+
 Public Class posWindow
     Dim posClient As New OSClient()
     Private posTimer As DispatcherTimer

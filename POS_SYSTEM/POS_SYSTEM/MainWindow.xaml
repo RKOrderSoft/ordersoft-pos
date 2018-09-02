@@ -1,0 +1,17 @@
+﻿<Window x:Class="MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POS_SYSTEM"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="300" Width="450">
+    <Grid>
+        <Label Name="lblTitle" Content="OrderSoft Client Login" HorizontalAlignment="Left" Margin="25,25,-15,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="36"/>
+        <TextBox Name="txtIP" HorizontalAlignment="Left" Height="23" Margin="30,160,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Name="lblIP" Content="Server IP" HorizontalAlignment="Left" Margin="25,131,0,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="16"/>
+
+        <Button Name="btnConnect" IsEnabled="True" Content="Connect" HorizontalAlignment="Left" Margin="30,202,0,0" VerticalAlignment="Top" Width="75"/>
+
+    </Grid>
+</Window>

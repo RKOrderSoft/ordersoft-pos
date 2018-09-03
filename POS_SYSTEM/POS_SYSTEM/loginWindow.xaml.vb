@@ -13,8 +13,8 @@ Public Class loginWindow
         loginWindowClient = client
 
         ' Debugging, opens posWindow instantly
-        Dim nextWindow As posWindow = New posWindow(loginWindowClient)
-        nextWindow.Show()
+        'Dim nextWindow As posWindow = New posWindow(loginWindowClient)
+        'nextWindow.Show()
     End Sub
 
     Private Async Sub login_onclick(sender As Object, e As RoutedEventArgs) Handles btnLogin.Click

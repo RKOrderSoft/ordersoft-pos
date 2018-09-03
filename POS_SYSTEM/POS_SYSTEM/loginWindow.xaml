@@ -9,10 +9,10 @@
     <Grid>
         <Label Name="lblTitle" Content="OrderSoft Client Login" HorizontalAlignment="Left" Margin="25,25,-15,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="36"/>
 
-        <TextBox Name="txtUser" HorizontalAlignment="Left" Height="23" Margin="25,132,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="txtUser" HorizontalAlignment="Left" Height="23" Margin="25,132,0,0" TextWrapping="Wrap" Text="JasonXiao" VerticalAlignment="Top" Width="120"/>
         <Label Name="lblUser" Content="Username" HorizontalAlignment="Left" Margin="20,103,0,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="16"/>
 
-        <PasswordBox Name="txtPassword" HorizontalAlignment="Left" Height="23" Margin="25,189,0,0" VerticalAlignment="Top" Width="120"/>
+        <PasswordBox Name="txtPassword" HorizontalAlignment="Left" Height="23" Margin="25,189,0,0" VerticalAlignment="Top" Width="120" Password="glasses"/>
         <Label Name="lblPassword" Content="Password" HorizontalAlignment="Left" Margin="20,160,0,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="16"/>
 
         <Button Name="btnLogin" Content="Log in" HorizontalAlignment="Left" Margin="25,217,0,0" VerticalAlignment="Top" Width="75"/>

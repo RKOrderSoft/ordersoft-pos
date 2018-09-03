@@ -10,8 +10,10 @@ Class MainWindow
         ' Add any initialization after the InitializeComponent() call.
 
         ' Debugging, opens loginWindow instantly
-        Dim nextWindow As loginWindow = New loginWindow(client)
-        nextWindow.Show()
+        'Dim nextWindow As loginWindow = New loginWindow(client)
+        'nextWindow.Show()
+        'Dim nextWindow As posWindow = New posWindow(client)
+        'nextWindow.Show()
     End Sub
 
     Private Async Sub connect_onclick(sender As Object, e As RoutedEventArgs) Handles btnConnect.Click
@@ -23,7 +25,7 @@ Class MainWindow
         Dim failed = False
         Try
             ' Initiate client with given IP
-            Await client.Init(txtIP.Text)
+            Await client.Init("http://" + (txtIP.Text).ToString() + "/")
         Catch ex As Exception
             ' Error was thrown during initialisation
             failed = True

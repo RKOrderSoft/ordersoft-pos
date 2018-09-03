@@ -7,9 +7,17 @@
         mc:Ignorable="d"
         Title="posWindow" Height="800" Width="1200">
     <Grid>
-        <ListBox Name="listboxOrders" HorizontalAlignment="Left" Height="569" Margin="30,100,0,0" VerticalAlignment="Top" Width="1132"/>
-
         
+        <ListView Name="lvOrders" HorizontalAlignment="Left" Height="569" Margin="30,100,0,0" VerticalAlignment="Top" Width="1132">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="377" DisplayMemberBinding="{Binding TableNumber}">Table Number</GridViewColumn>
+                    <GridViewColumn Width="377" DisplayMemberBinding="{Binding TimeSubmitted}">Time Submitted</GridViewColumn>
+                    <GridViewColumn Width="376" DisplayMemberBinding="{Binding TimeCompleted}">Time Completed</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
         <Button Name="btnLogout" Content="Logout" HorizontalAlignment="Right" Margin="0,13,30,0" VerticalAlignment="Top" Width="282" Height="75"/>
         <Button x:Name="btnPay" Content="PAY" HorizontalAlignment="Right" Margin="0,0,30,12" VerticalAlignment="Bottom" Width="282" Height="75"/>
     </Grid>

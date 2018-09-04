@@ -61,12 +61,15 @@ Public Class posWindow
         Next
     End Sub
 
-    Private Sub btnPay_Click(sender As Object, e As RoutedEventArgs) Handles btnPay.Click
-        Dim nextWindow As orderInfoWindow = New orderInfoWindow(posClient, selectedOrder)
-        nextWindow.Show()
+    ' Item selected in list view
+    Private Sub lvOrders_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles lvOrders.SelectionChanged
+        selectedOrder = lvOrders.SelectedItem.OrderId ' selectedOrder is set to the orderId selected
     End Sub
 
-    Private Sub lvOrders_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles lvOrders.SelectionChanged
-        selectedOrder = lvOrders.SelectedItem.OrderId
+    ' Pay button clicked
+    Private Sub btnPay_Click(sender As Object, e As RoutedEventArgs) Handles btnPay.Click
+        Dim nextWindow As orderInfoWindow = New orderInfoWindow(posClient, selectedOrder)
+        Me.Hide()
+        nextWindow.Show()
     End Sub
 End Class

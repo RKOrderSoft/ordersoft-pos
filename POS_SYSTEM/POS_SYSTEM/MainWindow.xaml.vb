@@ -40,6 +40,7 @@ Class MainWindow
             btnConnect.IsEnabled = True
         Else ' Connection succeeded, open login window
             Dim nextWindow As loginWindow = New loginWindow(client)
+            Me.Hide()
             nextWindow.Show()
         End If
     End Sub

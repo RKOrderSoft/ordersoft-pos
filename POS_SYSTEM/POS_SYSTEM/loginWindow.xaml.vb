@@ -44,6 +44,7 @@ Public Class loginWindow
             btnLogin.IsEnabled = True
         Else ' Login succeeded, open posWindow
             Dim nextWindow As posWindow = New posWindow(loginWindowClient)
+            Me.Hide()
             nextWindow.Show()
         End If
     End Sub

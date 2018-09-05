@@ -56,13 +56,20 @@ Public Class orderInfoWindow
 
 
 
-
     End Sub
 
     Public Sub parseDishes(strDishes)
-        Dim dishIds As List(Of String)
+        Dim posDishes As List(Of POSDish)
+        
+        For Each d As String In Split(strDishes, ",")
+            Dim posDish As New POSDish
+            posDish.dishId = d[0]
+            If len(d) = 2 Then
+                posDish.size = d[1]
+                
+            End If
+        Next
 
-
-        Return dishIds
+        Return posDishes
     End Sub
 End Class

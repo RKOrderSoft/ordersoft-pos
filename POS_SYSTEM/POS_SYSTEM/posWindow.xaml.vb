@@ -1,8 +1,6 @@
 ﻿Imports OrderSoft
 Imports System.Windows.Threading
 
-' list box stuff https://www.tutorialspoint.com/vb.net/vb.net_listbox.htm
-
 Public Class basicOrder
     Public Property OrderId As String
     Public Property TableNumber As String
@@ -59,6 +57,9 @@ Public Class posWindow
             End If
 
         Next
+
+        ' Loop through all items in list view and check if they are still unpaid
+
     End Sub
 
     ' Item selected in list view
@@ -69,7 +70,14 @@ Public Class posWindow
     ' Pay button clicked
     Private Sub btnPay_Click(sender As Object, e As RoutedEventArgs) Handles btnPay.Click
         Dim nextWindow As orderInfoWindow = New orderInfoWindow(posClient, selectedOrder)
-        Me.Hide()
         nextWindow.Show()
+        Me.Close()
+    End Sub
+
+    ' Logout button click
+    Private Sub btnLogout_Click(sender As Object, e As RoutedEventArgs) Handles btnLogout.Click
+        If MessageBox.Show("Are you sure you want to log out?", "My App", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) = MessageBoxResult.Yes Then
+            End
+        End If
     End Sub
 End Class

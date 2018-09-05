@@ -1,4 +1,5 @@
 ﻿Imports OrderSoft
+Imports System.Windows.Documents
 
 ' A dish object made for this window to simplify things
 Public Class POSDish
@@ -23,6 +24,11 @@ Public Class POSOrder
     Public Property tax As Single
     Public Property orderTotal As Single
     Public Property amtPaid As Single
+End Class
+
+Public Class Printer
+
+
 End Class
 
 Public Class orderInfoWindow
@@ -158,7 +164,7 @@ Public Class orderInfoWindow
             Dim changedOrder = Await orderClient.SetOrder(orderInfo.origOrder)
 
             ' Message box to ask if a receipt should be printed
-            Dim msgboxResult = MessageBox.Show("Would you like to print a receipt?", "My App", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
+            Dim msgboxResult = MessageBox.Show("Change: " + (orderInfo.amtPaid - orderInfo.orderTotal).ToString("C2") + vbNewLine + "Would you like to print a receipt?", "My App", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
             If msgboxResult = MessageBoxResult.Yes Then
                 printReceipt()
 
@@ -181,8 +187,17 @@ Public Class orderInfoWindow
     End Sub
 
     Private Sub printReceipt()
+        Dim receipt As New FlowDocument()
 
+        Dim sec As New Section()
+
+        Dim parInfo As New Paragraph()
+        Dim parDishes As New Paragraph()
+        Dim parTotals As New Paragraph()
+
+        'parInfo.
     End Sub
+
 End Class
 
 

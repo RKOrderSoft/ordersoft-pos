@@ -11,16 +11,16 @@
 
         <Label Content="$" HorizontalAlignment="Left" Margin="423,34,0,0" VerticalAlignment="Top" Height="52" Width="32"/>
 
-        <Button Name="btn1" Content="1" HorizontalAlignment="Left" Margin="460,103,0,0" VerticalAlignment="Top" Width="78" Height="75"/>
-        <Button x:Name="btn2" Content="2" HorizontalAlignment="Left" Margin="538,103,0,0" VerticalAlignment="Top" Width="78" Height="75"/>
-        <Button x:Name="btn3" Content="3" HorizontalAlignment="Left" Margin="616,103,0,0" VerticalAlignment="Top" Width="78" Height="75"/>
-        <Button x:Name="btn4" Content="4" HorizontalAlignment="Left" Margin="460,178,0,0" VerticalAlignment="Top" Width="78" Height="75"/>
-        <Button x:Name="btn5" Content="5" HorizontalAlignment="Left" Margin="538,178,0,0" VerticalAlignment="Top" Width="78" Height="75"/>
-        <Button x:Name="btn6" Content="6" HorizontalAlignment="Left" Margin="616,178,0,0" VerticalAlignment="Top" Width="78" Height="75"/>
-        <Button x:Name="btn7" Content="7" HorizontalAlignment="Left" Margin="460,253,0,0" VerticalAlignment="Top" Width="78" Height="75"/>
-        <Button x:Name="btn8" Content="8" HorizontalAlignment="Left" Margin="538,253,0,0" VerticalAlignment="Top" Width="78" Height="75"/>
-        <Button x:Name="btn9" Content="9" HorizontalAlignment="Left" Margin="616,253,0,0" VerticalAlignment="Top" Width="78" Height="75"/>
-        <Button x:Name="btn0" Content="0" HorizontalAlignment="Left" Margin="538,328,0,0" VerticalAlignment="Top" Width="78" Height="75"/>
+        <Button Name="btn1" Content="1" HorizontalAlignment="Left" Margin="460,103,0,0" VerticalAlignment="Top" Width="78" Height="75" IsEnabled="False"/>
+        <Button x:Name="btn2" Content="2" HorizontalAlignment="Left" Margin="538,103,0,0" VerticalAlignment="Top" Width="78" Height="75" IsEnabled="False"/>
+        <Button x:Name="btn3" Content="3" HorizontalAlignment="Left" Margin="616,103,0,0" VerticalAlignment="Top" Width="78" Height="75" IsEnabled="False"/>
+        <Button x:Name="btn4" Content="4" HorizontalAlignment="Left" Margin="460,178,0,0" VerticalAlignment="Top" Width="78" Height="75" IsEnabled="False"/>
+        <Button x:Name="btn5" Content="5" HorizontalAlignment="Left" Margin="538,178,0,0" VerticalAlignment="Top" Width="78" Height="75" IsEnabled="False"/>
+        <Button x:Name="btn6" Content="6" HorizontalAlignment="Left" Margin="616,178,0,0" VerticalAlignment="Top" Width="78" Height="75" IsEnabled="False"/>
+        <Button x:Name="btn7" Content="7" HorizontalAlignment="Left" Margin="460,253,0,0" VerticalAlignment="Top" Width="78" Height="75" IsEnabled="False"/>
+        <Button x:Name="btn8" Content="8" HorizontalAlignment="Left" Margin="538,253,0,0" VerticalAlignment="Top" Width="78" Height="75" IsEnabled="False"/>
+        <Button x:Name="btn9" Content="9" HorizontalAlignment="Left" Margin="616,253,0,0" VerticalAlignment="Top" Width="78" Height="75" IsEnabled="False"/>
+        <Button x:Name="btn0" Content="0" HorizontalAlignment="Left" Margin="538,328,0,0" VerticalAlignment="Top" Width="78" Height="75" IsEnabled="False"/>
         <Button x:Name="btnPay" Content="PAY" HorizontalAlignment="Left" Margin="616,328,0,0" VerticalAlignment="Top" Width="78" Height="75"/>
         <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="460,328,0,0" VerticalAlignment="Top" Width="78" Height="75"/>
 
@@ -41,7 +41,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label Name="lblErrorMsg" Content="Please enter a value higher than the total" HorizontalAlignment="Left" Margin="455,81,0,0" VerticalAlignment="Top" Width="252" HorizontalContentAlignment="Right" Background="{x:Null}" Foreground="Red" Visibility="Hidden"/>
+        <Label Name="lblErrorPaidTooLow" Content="Please enter a value higher than the total" HorizontalAlignment="Left" Margin="455,81,0,0" VerticalAlignment="Top" Width="252" HorizontalContentAlignment="Right" Background="{x:Null}" Foreground="Red" Visibility="Hidden"/>
+        <Label Name="lblErrorNoAmtEntered" Content="Please enter an amount" HorizontalAlignment="Left" Margin="455,81,0,0" VerticalAlignment="Top" Width="252" HorizontalContentAlignment="Right" Background="{x:Null}" Foreground="Red" Visibility="Hidden"/>
 
     </Grid>
 </Window>

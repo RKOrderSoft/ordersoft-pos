@@ -24,6 +24,7 @@ Public Class POSOrder
     Public Property tax As Single
     Public Property orderTotal As Single
     Public Property amtPaid As Single
+    Public Property change As Single
 End Class
 
 Public Class Printer
@@ -66,7 +67,7 @@ Public Class orderInfoWindow
     Public Async Sub initialiseWindow(order)
         Dim originalOrder = Await orderClient.GetOrder(order)
 
-        ' 
+        ' Populating orderInfo
         orderInfo.origOrder = originalOrder
         orderInfo.orderId = order
         orderInfo.tableNumber = originalOrder.TableNumber
@@ -107,23 +108,24 @@ Public Class orderInfoWindow
             Dim dishInfo = Await orderClient.GetDishes(dishId:=posDish.dishId)
 
             If Split(d, "/").Length = 2 Then ' if the dish has a size
+                posDish.name = dishInfo(0).Name
                 posDish.size = Split(d, "/")(1) ' extracts size
+                posDish.upgradePrice = dishInfo(0).UpgradePrice
                 ' calculate size upgrade cost
-                '
-                '
-                '
+                Dim indexOfSize = Array.IndexOf(dishInfo(0).Sizes, posDish.size)
+                posDish.totalPrice = dishInfo(0).BasePrice + (indexOfSize * dishInfo(0).UpgradePrice)
             Else ' no size specified
                 posDish.totalPrice = dishInfo(0).BasePrice
                 posDish.name = dishInfo(0).Name
                 posDish.size = "N/A"
             End If
-
             posDishes.Add(posDish)
         Next
 
         Return posDishes
     End Function
 
+    ' Data validation
     ' Makes sure only money values can be entered into the text box
     Private Sub txtboxAmtPaid_TextChanged(sender As Object, e As TextChangedEventArgs) Handles txtboxAmtPaid.TextChanged
         Dim text As String = txtboxAmtPaid.Text
@@ -145,48 +147,68 @@ Public Class orderInfoWindow
     Private Async Sub btnPay_Click(sender As Object, e As RoutedEventArgs) Handles btnPay.Click
         ' Disable button and text box while processing payment to server
 
-
-        ' Check if amount paid is lower than amount owed
-        If txtboxAmtPaid.Text < orderInfo.orderTotal Then
-            ' Display error message
-            lblErrorMsg.Visibility = Visibility.Visible
+        ' Check if amount paid is empty
+        If txtboxAmtPaid.Text = "" Then
+            lblErrorNoAmtEntered.Visibility = Visibility.Visible
+            lblErrorPaidTooLow.Visibility = Visibility.Hidden
         Else
-            btnPay.IsEnabled = False
-            txtboxAmtPaid.IsEnabled = False
+            ' Check if amount paid is lower than amount owed
+            If txtboxAmtPaid.Text < orderInfo.orderTotal Then ' Amount paid is lower than amount owed
+                ' Display error message
+                lblErrorPaidTooLow.Visibility = Visibility.Visible
+                lblErrorNoAmtEntered.Visibility = Visibility.Hidden
+            Else ' Amount paid is higher than amount owed
+                btnPay.IsEnabled = False
+                txtboxAmtPaid.IsEnabled = False
 
-            orderInfo.amtPaid = txtboxAmtPaid.Text
+                orderInfo.amtPaid = txtboxAmtPaid.Text
 
-            ' Set up original order before sending back to server
-            orderInfo.origOrder.AmtPaid = orderInfo.amtPaid
-            orderInfo.origOrder.TimePaid = DateTime.Now
+                ' Set up original order before sending back to server
+                orderInfo.origOrder.AmtPaid = orderInfo.amtPaid
+                orderInfo.origOrder.TimePaid = DateTime.Now
 
-            ' Send original order back to server with amount paid and time paid
-            Dim changedOrder = Await orderClient.SetOrder(orderInfo.origOrder)
+                ' Send original order back to server with amount paid and time paid
+                Dim changedOrder = Await orderClient.SetOrder(orderInfo.origOrder)
 
-            ' Message box to ask if a receipt should be printed
-            Dim msgboxResult = MessageBox.Show("Change: " + (orderInfo.amtPaid - orderInfo.orderTotal).ToString("C2") + vbNewLine + "Would you like to print a receipt?", "My App", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
-            If msgboxResult = MessageBoxResult.Yes Then
-                printReceipt()
+                ' Calculate change
+                orderInfo.change = orderInfo.amtPaid - orderInfo.orderTotal
 
-                Dim lastWindow As posWindow = New posWindow(orderClient)
-                lastWindow.Show()
-                Me.Close()
-            ElseIf msgboxResult = MessageBoxResult.No Then
-                Dim lastWindow As posWindow = New posWindow(orderClient)
-                lastWindow.Show()
-                Me.Close()
+                ' Message box to ask if a receipt should be printed
+                Dim msgboxResult = MessageBox.Show("Change: " + orderInfo.change.ToString("C2") + vbNewLine + "Would you like to print a receipt?", "My App", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
+                If msgboxResult = MessageBoxResult.Yes Then
+                    ' Print receipt
+                    Dim prnt As New PrintDialog()
+                    Dim receipt As FlowDocument = printReceipt()
+                    receipt.Name = "FlowDoc"
+
+                    Dim idpSource As IDocumentPaginatorSource = receipt
+                    prnt.PrintDocument(idpSource.DocumentPaginator, "Receipt printing")
+
+                    ' Reopen posWindow
+                    Dim lastWindow As posWindow = New posWindow(orderClient)
+                    lastWindow.Show()
+                    Me.Close()
+                ElseIf msgboxResult = MessageBoxResult.No Then
+                    ' Reopen posWindow
+                    Dim lastWindow As posWindow = New posWindow(orderClient)
+                    lastWindow.Show()
+                    Me.Close()
+                End If
             End If
         End If
 
+
     End Sub
 
+    ' Cancel button
     Private Sub btnCancel_Click(sender As Object, e As RoutedEventArgs) Handles btnCancel.Click
         Dim lastWindow As posWindow = New posWindow(orderClient)
         lastWindow.Show()
         Me.Close()
     End Sub
 
-    Private Sub printReceipt()
+    Private Function printReceipt() As FlowDocument
+        ' Set up flow document
         Dim receipt As New FlowDocument()
 
         Dim sec As New Section()
@@ -195,8 +217,34 @@ Public Class orderInfoWindow
         Dim parDishes As New Paragraph()
         Dim parTotals As New Paragraph()
 
-        'parInfo.
-    End Sub
+        ' Set up fonts for paragraphs
+        parInfo.FontFamily = New FontFamily("Courier New")
+        parDishes.FontFamily = New FontFamily("Courier New")
+        parTotals.FontFamily = New FontFamily("Courier New")
+
+        ' Adding info to flow document
+        parInfo.Inlines.Add("Time paid: " + orderInfo.origOrder.TimePaidString + vbNewLine)
+        parInfo.Inlines.Add("Table number: " + orderInfo.tableNumber.ToString() + vbNewLine)
+
+
+        For Each dish As POSDish In orderInfo.dishIds
+            parDishes.Inlines.Add(dish.name + "   " + dish.size + "   " + dish.totalPrice.ToString("C2") + vbNewLine)
+        Next
+
+        parTotals.Inlines.Add("Notes: " + orderInfo.notes + vbNewLine)
+        parTotals.Inlines.Add("Tax: " + orderInfo.tax.ToString("C2") + vbNewLine)
+        parTotals.Inlines.Add("Total due: " + orderInfo.orderTotal.ToString("C2") + vbNewLine)
+        parTotals.Inlines.Add("Amount paid: " + orderInfo.amtPaid.ToString("C2") + vbNewLine)
+        parTotals.Inlines.Add("Change: " + orderInfo.change.ToString("C2") + vbNewLine)
+
+        sec.Blocks.Add(parInfo)
+        sec.Blocks.Add(parDishes)
+        sec.Blocks.Add(parTotals)
+        receipt.Blocks.Add(sec)
+
+        ' Return flow document
+        Return receipt
+    End Function
 
 End Class
 

@@ -20,5 +20,6 @@
 
         <Button Name="btnLogout" Content="Logout" HorizontalAlignment="Right" Margin="0,13,30,0" VerticalAlignment="Top" Width="282" Height="75"/>
         <Button x:Name="btnPay" Content="Open Selected Order" HorizontalAlignment="Right" Margin="0,0,30,12" VerticalAlignment="Bottom" Width="282" Height="75"/>
+        <Label Name="lblErrorMsg" Content="Please select an order first" HorizontalAlignment="Left" Margin="694,707,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="Red" Visibility="Hidden"/>
     </Grid>
 </Window>

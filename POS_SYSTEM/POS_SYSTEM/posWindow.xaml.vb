@@ -11,7 +11,7 @@ End Class
 Public Class posWindow
 
     Dim ordersInListView As New List(Of String) ' A list of OrderIDs keeping track of what orders are already in the list view
-    Dim selectedOrder As String ' OrderID of currently selected order in list view
+    Dim selectedOrder As String = "" ' OrderID of currently selected order in list view
 
     Dim posClient As OSClient
     Private posTimer As DispatcherTimer ' Timer to refresh unpaid orders every tick
@@ -33,6 +33,9 @@ Public Class posWindow
 
         ' Initial update of the list view
         PosTick() ' Initial tick
+
+        ' Clear selectedOrder
+        selectedOrder = ""
     End Sub
 
     ' A timer that requests from the server what orders are currently unpaid
@@ -64,14 +67,19 @@ Public Class posWindow
 
     ' Item selected in list view
     Private Sub lvOrders_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles lvOrders.SelectionChanged
-        selectedOrder = lvOrders.SelectedItem.OrderId ' selectedOrder is set to the orderId selected
+        selectedOrder = lvOrders.SelectedItem.OrderId ' selectedOrder is set to the orderId of the order selected
     End Sub
 
     ' Pay button clicked
     Private Sub btnPay_Click(sender As Object, e As RoutedEventArgs) Handles btnPay.Click
-        Dim nextWindow As orderInfoWindow = New orderInfoWindow(posClient, selectedOrder)
-        nextWindow.Show()
-        Me.Close()
+        If selectedOrder = "" Then ' If there is no order selected
+            ' Show error message
+            lblErrorMsg.Visibility = Visibility.Visible
+        Else
+            Dim nextWindow As orderInfoWindow = New orderInfoWindow(posClient, selectedOrder)
+            nextWindow.Show()
+            Me.Close()
+        End If
     End Sub
 
     ' Logout button click

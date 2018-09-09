@@ -1,0 +1,22 @@
+﻿<Window x:Class="posWindowHelp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POS_SYSTEM"
+        mc:Ignorable="d"
+        Title="posWindowHelp" Height="450" Width="800">
+    <Grid>
+        <Label Content="Select an order,then click open order to view the order in more detail and pay." HorizontalAlignment="Left" Margin="196,130,0,0" VerticalAlignment="Top" Height="150" Width="476" RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.342"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="-0.916"/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Button Name="btnClose"  Content="Close" HorizontalAlignment="Left" Margin="559,330,0,0" VerticalAlignment="Top" Width="75"/>
+    </Grid>
+</Window>

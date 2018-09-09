@@ -1,0 +1,13 @@
+﻿<Window x:Class="MainWindowHelp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POS_SYSTEM"
+        mc:Ignorable="d"
+        Title="MainWindowHelp" Height="450" Width="800">
+    <Grid>
+        <Label Content="Enter the address/IP on the homepage of the server then click connect." HorizontalAlignment="Left" Margin="197,131,0,0" VerticalAlignment="Top" Height="97" Width="514"/>
+        <Button Name="btnClose"  Content="Close" HorizontalAlignment="Left" Margin="559,330,0,0" VerticalAlignment="Top" Width="75"/>
+    </Grid>
+</Window>

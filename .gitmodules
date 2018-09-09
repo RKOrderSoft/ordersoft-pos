@@ -1,0 +1,3 @@
+[submodule "ordersoft-client-cs"]
+	path = ordersoft-client-cs
+	url = git@github.com:rkordersoft/ordersoft-client-cs

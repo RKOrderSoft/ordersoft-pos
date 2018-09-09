@@ -44,5 +44,7 @@
         <Label Name="lblErrorPaidTooLow" Content="Please enter a value higher than the total" HorizontalAlignment="Left" Margin="455,81,0,0" VerticalAlignment="Top" Width="252" HorizontalContentAlignment="Right" Background="{x:Null}" Foreground="Red" Visibility="Hidden"/>
         <Label Name="lblErrorNoAmtEntered" Content="Please enter an amount" HorizontalAlignment="Left" Margin="455,81,0,0" VerticalAlignment="Top" Width="252" HorizontalContentAlignment="Right" Background="{x:Null}" Foreground="Red" Visibility="Hidden"/>
 
+        <Button Name="btnHelp" Content="help me." HorizontalAlignment="Left" Margin="707,10,0,0" VerticalAlignment="Top" Width="75" Click="btnHelp_Click"/>
+
     </Grid>
 </Window>

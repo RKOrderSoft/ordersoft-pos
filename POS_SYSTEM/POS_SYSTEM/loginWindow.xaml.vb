@@ -17,7 +17,7 @@ Public Class loginWindow
         'nextWindow.Show()
     End Sub
 
-    Private Async Sub login_onclick(sender As Object, e As RoutedEventArgs) Handles btnLogin.Click
+    Private Async Sub login_onclick() Handles btnLogin.Click
         ' Disable login UI elements while interacting with server
         lblUser.IsEnabled = False
         lblPassword.IsEnabled = False
@@ -44,9 +44,26 @@ Public Class loginWindow
             btnLogin.IsEnabled = True
         Else ' Login succeeded, open posWindow
             Dim nextWindow As posWindow = New posWindow(loginWindowClient)
-            Me.Hide()
             nextWindow.Show()
+
+            Me.Close()
         End If
     End Sub
 
+    Private Sub Button_Click(sender As Object, e As RoutedEventArgs)
+        Dim helpWindow As loginWindowHelp = New loginWindowHelp()
+        helpWindow.Show()
+    End Sub
+
+    Private Sub txtUser_KeyDown(sender As Object, e As KeyEventArgs) Handles txtUser.KeyDown
+        If e.Key = Key.Return Then
+            login_onclick()
+        End If
+    End Sub
+
+    Private Sub txtPassword_KeyDown(sender As Object, e As KeyEventArgs) Handles txtPassword.KeyDown
+        If e.Key = Key.Return Then
+            login_onclick()
+        End If
+    End Sub
 End Class

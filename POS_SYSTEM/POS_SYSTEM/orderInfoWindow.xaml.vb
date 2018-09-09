@@ -34,7 +34,6 @@ End Class
 
 Public Class orderInfoWindow
     Dim charactersAllowed As New List(Of Char) ' Characters allow to be in the amount paid text box
-
     Dim orderClient As OSClient ' Client for this window
     Dim orderInfo As New POSOrder ' Object representing the order opened in this window from last window
 
@@ -246,6 +245,10 @@ Public Class orderInfoWindow
         Return receipt
     End Function
 
+    Private Sub btnHelp_Click(sender As Object, e As RoutedEventArgs) Handles btnHelp.Click
+        Dim helpWindow = New orderInfoWindowHelp()
+        helpWindow.Show()
+    End Sub
 End Class
 
 

@@ -16,6 +16,6 @@
         <Label Name="lblPassword" Content="Password" HorizontalAlignment="Left" Margin="20,160,0,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="16"/>
 
         <Button Name="btnLogin" Content="Log in" HorizontalAlignment="Left" Margin="25,217,0,0" VerticalAlignment="Top" Width="75"/>
-
+        <Button Name="btnHelp"  Content="help me." HorizontalAlignment="Left" Margin="357,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
     </Grid>
 </Window>

@@ -16,7 +16,7 @@ Class MainWindow
         'nextWindow.Show()
     End Sub
 
-    Private Async Sub connect_onclick(sender As Object, e As RoutedEventArgs) Handles btnConnect.Click
+    Private Async Sub connect_onclick() Handles btnConnect.Click
         ' Set IP UI elements as disabled while loading
         lblIP.IsEnabled = False
         txtIP.IsEnabled = False
@@ -45,4 +45,14 @@ Class MainWindow
         End If
     End Sub
 
+    Private Sub txtIP_KeyDown(sender As Object, e As KeyEventArgs) Handles txtIP.KeyDown
+        If e.Key = Key.Return Then
+            connect_onclick()
+        End If
+    End Sub
+
+    Private Sub btnHelp_Click(sender As Object, e As RoutedEventArgs)
+        Dim helpWindow = New MainWindowHelp()
+        helpWindow.Show()
+    End Sub
 End Class

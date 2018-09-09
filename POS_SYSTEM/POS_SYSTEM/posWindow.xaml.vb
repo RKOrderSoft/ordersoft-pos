@@ -88,4 +88,9 @@ Public Class posWindow
             End
         End If
     End Sub
+
+    Private Sub btnHelp_Click(sender As Object, e As RoutedEventArgs) Handles btnHelp.Click
+        Dim helpWindow As loginWindowHelp = New loginWindowHelp()
+        helpWindow.Show()
+    End Sub
 End Class

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POS_SYSTEM"
         mc:Ignorable="d"
-        Title="loginWindowHelp" Height="450" Width="800">
+        Title="loginWindowHelp" Height="450" Width="800" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid>
         <Label Content="Enter your username into the username field.&#xD;&#xA;Enter your password into the password field.&#xD;&#xA;Then click login." HorizontalAlignment="Left" Margin="197,131,0,0" VerticalAlignment="Top" Height="150" Width="307"/>
         <Button Name="btnClose"  Content="Close" HorizontalAlignment="Left" Margin="559,330,0,0" VerticalAlignment="Top" Width="75"/>

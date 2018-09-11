@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POS_SYSTEM"
         mc:Ignorable="d"
-        Title="posWindowHelp" Height="450" Width="800">
+        Title="posWindowHelp" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" WindowStyle="None">
     <Grid>
         <Label Content="Select an order,then click open order to view the order in more detail and pay." HorizontalAlignment="Left" Margin="196,130,0,0" VerticalAlignment="Top" Height="150" Width="476" RenderTransformOrigin="0.5,0.5">
             <Label.RenderTransform>

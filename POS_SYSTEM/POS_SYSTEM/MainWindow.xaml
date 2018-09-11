@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POS_SYSTEM"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="450">
+        Title="MainWindow" Height="400" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid>
         <Label Name="lblTitle" Content="OrderSoft Client Login" HorizontalAlignment="Left" Margin="25,25,-15,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="36"/>
-        <TextBox Name="txtIP" HorizontalAlignment="Left" Height="26" Margin="66,165,0,0" TextWrapping="Wrap" Text="localhost:8080" VerticalAlignment="Top" Width="120"/>
-        <Label Name="lblIP" Content="Server IP" HorizontalAlignment="Left" Margin="25,131,0,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="16"/>
+        <TextBox Name="txtIP" HorizontalAlignment="Left" Height="45" Margin="154,160,0,0" TextWrapping="Wrap" Text="localhost:8080" VerticalAlignment="Top" Width="221"/>
+        <Label Name="lblIP" Content="Server IP" HorizontalAlignment="Left" Margin="110,126,0,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="16"/>
 
-        <Button Name="btnConnect" IsEnabled="True" Content="Connect" HorizontalAlignment="Left" Margin="30,202,0,0" VerticalAlignment="Top" Width="75"/>
-        <Label Name="lblhttp" Content="http://" HorizontalAlignment="Left" Margin="25,165,0,0" VerticalAlignment="Top"/>
-        <Label Name="lblslash" Content="/" HorizontalAlignment="Left" Margin="183,165,0,0" VerticalAlignment="Top"/>
+        <Button Name="btnConnect" IsEnabled="True" Content="Connect" HorizontalAlignment="Left" Margin="110,210,0,0" VerticalAlignment="Top" Width="280" Height="110"/>
+        <Label Name="lblhttp" Content="http://" HorizontalAlignment="Left" Margin="110,169,0,0" VerticalAlignment="Top"/>
+        <Label Name="lblslash" Content="/" HorizontalAlignment="Left" Margin="375,169,0,0" VerticalAlignment="Top"/>
 
-        <Button Name="btnHelp"  Content="help me." HorizontalAlignment="Left" Margin="357,10,0,0" VerticalAlignment="Top" Width="75" Click="btnHelp_Click"/>
+        <Button Name="btnHelp"  Content="help me." HorizontalAlignment="Left" Margin="407,10,0,0" VerticalAlignment="Top" Width="75" Click="btnHelp_Click" Height="75"/>
 
     </Grid>
 </Window>

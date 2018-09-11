@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POS_SYSTEM"
         mc:Ignorable="d"
-        Title="loginWindow" Height="300" Width="450">
+        Title="loginWindow" Height="450" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid>
-        <Label Name="lblTitle" Content="OrderSoft Client Login" HorizontalAlignment="Left" Margin="25,25,-15,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="36"/>
+        <Label Name="lblTitle" Content="OrderSoft Client Login" HorizontalAlignment="Left" Margin="25,25,0,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="36" Height="73"/>
 
-        <TextBox Name="txtUser" HorizontalAlignment="Left" Height="23" Margin="25,132,0,0" TextWrapping="Wrap" Text="JasonXiao" VerticalAlignment="Top" Width="120"/>
-        <Label Name="lblUser" Content="Username" HorizontalAlignment="Left" Margin="20,103,0,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="16"/>
+        <TextBox Name="txtUser" HorizontalAlignment="Left" Height="54" Margin="110,138,0,0" TextWrapping="Wrap" Text="JasonXiao" VerticalAlignment="Top" Width="280"/>
+        <Label Name="lblUser" Content="Username" HorizontalAlignment="Left" Margin="109,104,0,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="16"/>
 
-        <PasswordBox Name="txtPassword" HorizontalAlignment="Left" Height="23" Margin="25,189,0,0" VerticalAlignment="Top" Width="120" Password="glasses"/>
-        <Label Name="lblPassword" Content="Password" HorizontalAlignment="Left" Margin="20,160,0,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="16"/>
+        <PasswordBox Name="txtPassword" HorizontalAlignment="Left" Height="54" Margin="110,231,0,0" VerticalAlignment="Top" Width="280" Password="glasses"/>
+        <Label Name="lblPassword" Content="Password" HorizontalAlignment="Left" Margin="109,197,0,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="16"/>
 
-        <Button Name="btnLogin" Content="Log in" HorizontalAlignment="Left" Margin="25,217,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Name="btnHelp"  Content="help me." HorizontalAlignment="Left" Margin="357,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button Name="btnLogin" Content="Log in" HorizontalAlignment="Left" Margin="110,301,0,0" VerticalAlignment="Top" Width="280" Height="75"/>
+        <Button Name="btnHelp"  Content="help me." HorizontalAlignment="Left" Margin="407,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Height="75"/>
     </Grid>
 </Window>

@@ -249,6 +249,51 @@ Public Class orderInfoWindow
         Dim helpWindow = New orderInfoWindowHelp()
         helpWindow.Show()
     End Sub
+
+    ' Handling keypad clicks
+    Private Sub btn1_Click(sender As Object, e As RoutedEventArgs) Handles btn1.Click
+        txtboxAmtPaid.Text += "1"
+    End Sub
+
+    Private Sub btn2_Click(sender As Object, e As RoutedEventArgs) Handles btn2.Click
+        txtboxAmtPaid.Text += "2"
+    End Sub
+
+    Private Sub btn3_Click(sender As Object, e As RoutedEventArgs) Handles btn3.Click
+        txtboxAmtPaid.Text += "3"
+    End Sub
+
+    Private Sub btn4_Click(sender As Object, e As RoutedEventArgs) Handles btn4.Click
+        txtboxAmtPaid.Text += "4"
+    End Sub
+
+    Private Sub btn5_Click(sender As Object, e As RoutedEventArgs) Handles btn5.Click
+        txtboxAmtPaid.Text += "5"
+    End Sub
+
+    Private Sub btn6_Click(sender As Object, e As RoutedEventArgs) Handles btn6.Click
+        txtboxAmtPaid.Text += "6"
+    End Sub
+
+    Private Sub btn7_Click(sender As Object, e As RoutedEventArgs) Handles btn7.Click
+        txtboxAmtPaid.Text += "7"
+    End Sub
+
+    Private Sub btn8_Click(sender As Object, e As RoutedEventArgs) Handles btn8.Click
+        txtboxAmtPaid.Text += "8"
+    End Sub
+
+    Private Sub btn9_Click(sender As Object, e As RoutedEventArgs) Handles btn9.Click
+        txtboxAmtPaid.Text += "9"
+    End Sub
+
+    Private Sub btn0_Click(sender As Object, e As RoutedEventArgs) Handles btn0.Click
+        txtboxAmtPaid.Text += "0"
+    End Sub
+
+    Private Sub btnDot_Click(sender As Object, e As RoutedEventArgs) Handles btnDot.Click
+        txtboxAmtPaid.Text += "."
+    End Sub
 End Class
 
 

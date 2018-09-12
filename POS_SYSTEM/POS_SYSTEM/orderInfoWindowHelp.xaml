@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="orderInfoWindowHelp" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" WindowStyle="None">
     <Grid>
-        <Label Content="Order details can be viewed on the left of the window.&#xD;&#xA;&#xD;&#xA;Enter the amount paid by the customer and click pay for or change amount and receipt printing.&#xD;&#xA;&#xD;&#xA;" HorizontalAlignment="Left" Margin="197,131,0,0" VerticalAlignment="Top" Height="97" Width="532"/>
+        <Label Content="Order details can be viewed on the left of the window.&#xA;&#xA;Enter the amount paid by the customer and click pay for change amount and receipt printing.&#xA;&#xA;" HorizontalAlignment="Left" Margin="197,131,0,0" VerticalAlignment="Top" Height="97" Width="532"/>
         <Button Name="btnClose"  Content="Close" HorizontalAlignment="Left" Margin="559,330,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>

@@ -8,10 +8,10 @@
         Title="posWindow" Height="800" Width="1200" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid>
 
-        <ListView Name="lvOrders" HorizontalAlignment="Left" Height="569" Margin="30,100,0,0" VerticalAlignment="Top" Width="1132">
+        <ListView Name="lvOrders" HorizontalAlignment="Left" Height="569" Margin="30,100,0,0" VerticalAlignment="Top" Width="1132" FontSize="24" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
-                    <Setter Property="Height" Value="100" />
+                    <Setter Property="Height" Value="50" />
                 </Style>
             </ListView.ItemContainerStyle>
             <ListView.View>

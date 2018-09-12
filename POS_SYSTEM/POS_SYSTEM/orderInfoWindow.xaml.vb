@@ -292,7 +292,18 @@ Public Class orderInfoWindow
     End Sub
 
     Private Sub btnDot_Click(sender As Object, e As RoutedEventArgs) Handles btnDot.Click
-        txtboxAmtPaid.Text += "."
+        If txtboxAmtPaid.Text.Contains(".") Then
+        Else
+            txtboxAmtPaid.Text += "."
+        End If
+    End Sub
+
+    Private Sub btnBackspace_Click(sender As Object, e As RoutedEventArgs) Handles btnBackspace.Click
+        If txtboxAmtPaid.Text = "" Then
+
+        Else
+            txtboxAmtPaid.Text = txtboxAmtPaid.Text.Substring(0, Len(txtboxAmtPaid.Text) - 1)
+        End If
     End Sub
 End Class
 

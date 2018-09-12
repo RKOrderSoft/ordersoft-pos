@@ -8,21 +8,16 @@ Class MainWindow
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-
-        ' Debugging, opens loginWindow instantly
-        'Dim nextWindow As loginWindow = New loginWindow(client)
-        'nextWindow.Show()
-        'Dim nextWindow As posWindow = New posWindow(client)
-        'nextWindow.Show()
     End Sub
 
+    ' Handle connect button
     Private Async Sub connect_onclick() Handles btnConnect.Click
         ' Set IP UI elements as disabled while loading
         lblIP.IsEnabled = False
         txtIP.IsEnabled = False
         btnConnect.IsEnabled = False
 
-        Dim failed = False
+        Dim failed = False ' Variable tracking whether post was failed or not
         Try
             ' Initiate client with given IP
             Await client.Init("http://" + (txtIP.Text).ToString() + "/")
@@ -45,12 +40,14 @@ Class MainWindow
         End If
     End Sub
 
+    ' Handles posting to server when focused on IP text box
     Private Sub txtIP_KeyDown(sender As Object, e As KeyEventArgs) Handles txtIP.KeyDown
-        If e.Key = Key.Return Then
-            connect_onclick()
+        If e.Key = Key.Return Then ' If key pressed in enter then
+            connect_onclick() ' Initiate connection to server
         End If
     End Sub
 
+    ' Handles opening of help window
     Private Sub btnHelp_Click(sender As Object, e As RoutedEventArgs)
         Dim helpWindow = New MainWindowHelp()
         helpWindow.Show()

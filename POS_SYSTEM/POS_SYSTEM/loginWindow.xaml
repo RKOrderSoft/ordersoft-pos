@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POS_SYSTEM"
         mc:Ignorable="d"
-        Title="loginWindow" Height="450" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+        Title="Ordersoft POS Login" Height="450" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label Name="lblTitle" Content="OrderSoft Client Login" HorizontalAlignment="Left" Margin="25,25,0,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="36" Height="73"/>
 
-        <TextBox Name="txtUser" HorizontalAlignment="Left" Height="54" Margin="110,138,0,0" TextWrapping="Wrap" Text="JasonXiao" VerticalAlignment="Top" Width="280"/>
-        <Label Name="lblUser" Content="Username" HorizontalAlignment="Left" Margin="109,104,0,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="16"/>
+        <TextBox Name="txtUser" HorizontalAlignment="Left" Height="54" Margin="110,138,0,0" TextWrapping="Wrap" Text="JasonXiao" VerticalAlignment="Top" Width="280"  FontSize="20"/>
+        <Label Name="lblUser" Content="Username" HorizontalAlignment="Left" Margin="109,104,0,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="20"/>
 
-        <PasswordBox Name="txtPassword" HorizontalAlignment="Left" Height="54" Margin="110,231,0,0" VerticalAlignment="Top" Width="280" Password="glasses"/>
+        <PasswordBox Name="txtPassword" HorizontalAlignment="Left" Height="54" Margin="110,231,0,0" VerticalAlignment="Top" Width="280" Password="glasses"  FontSize="20"/>
         <Label Name="lblPassword" Content="Password" HorizontalAlignment="Left" Margin="109,197,0,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="16"/>
 
-        <Button Name="btnLogin" Content="Log in" HorizontalAlignment="Left" Margin="110,301,0,0" VerticalAlignment="Top" Width="280" Height="75"/>
-        <Button Name="btnHelp"  Content="help me." HorizontalAlignment="Left" Margin="407,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Height="75"/>
+        <Button Name="btnLogin" Content="Log in" HorizontalAlignment="Left" Margin="110,301,0,0" VerticalAlignment="Top" Width="280" Height="75" FontSize="20"/>
+        <Button Name="btnHelp"  Content="help me." HorizontalAlignment="Left" Margin="407,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Height="75"  FontSize="20"/>
     </Grid>
 </Window>

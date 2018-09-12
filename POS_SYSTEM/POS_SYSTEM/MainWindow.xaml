@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POS_SYSTEM"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+        Title="Ordersoft POS" Height="400" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Label Name="lblTitle" Content="OrderSoft Client Login" HorizontalAlignment="Left" Margin="25,25,-15,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="36"/>
-        <TextBox Name="txtIP" HorizontalAlignment="Left" Height="45" Margin="119,185,0,0" TextWrapping="Wrap" Text="localhost:8080" VerticalAlignment="Top" Width="221"/>
-        <Label Name="lblIP" Content="Server IP" HorizontalAlignment="Left" Margin="75,151,0,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="16"/>
+        <Label Name="lblTitle" Content="Welcome To &#xD;&#xA;OrderSoft POS" HorizontalAlignment="Left" Margin="25,25,-15,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="36"/>
+        <TextBox Name="txtIP" HorizontalAlignment="Left" Height="45" Margin="82,225,0,0" TextWrapping="Wrap" Text="orderhard.soundclout.me:3141" VerticalAlignment="Top" Width="290"  FontSize="20"/>
+        <Label Name="lblIP" Content="Server IP" HorizontalAlignment="Left" Margin="75,151,0,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="20"/>
 
-        <Button Name="btnConnect" IsEnabled="True" Content="Connect" HorizontalAlignment="Left" Margin="71,244,0,0" VerticalAlignment="Top" Width="181" Height="71"/>
-        <Label Name="lblhttp" Content="http://" HorizontalAlignment="Left" Margin="75,194,0,0" VerticalAlignment="Top"/>
-        <Label Name="lblslash" Content="/" HorizontalAlignment="Left" Margin="340,194,0,0" VerticalAlignment="Top"/>
+        <Button Name="btnConnect" IsEnabled="True" Content="Connect" HorizontalAlignment="Left" Margin="75,275,0,0" VerticalAlignment="Top" Width="181" Height="71"  FontSize="20"/>
+        <Label Name="lblhttp" Content="http://" HorizontalAlignment="Left" Margin="10,233,0,0" VerticalAlignment="Top"  FontSize="20"/>
+        <Label Name="lblslash" Content="/" HorizontalAlignment="Left" Margin="372,233,0,0" VerticalAlignment="Top"  FontSize="20"/>
 
-        <Button Name="btnHelp"  Content="help me." HorizontalAlignment="Left" Margin="407,10,0,0" VerticalAlignment="Top" Width="75" Click="btnHelp_Click" Height="75"/>
+        <Button Name="btnHelp"  Content="help me." HorizontalAlignment="Left" Margin="407,10,0,0" VerticalAlignment="Top" Width="75" Click="btnHelp_Click" Height="75"  FontSize="20"/>
 
     </Grid>
 </Window>

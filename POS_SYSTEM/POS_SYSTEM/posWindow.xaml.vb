@@ -1,5 +1,6 @@
 ﻿Imports OrderSoft
 Imports System.Windows.Threading
+Imports System.Linq
 
 Public Class basicOrder
     Public Property OrderId As String
@@ -13,7 +14,7 @@ Public Class posWindow
     Dim ordersInListView As New List(Of String) ' A list of OrderIDs keeping track of what orders are already in the list view
     Dim selectedOrder As String = "" ' OrderID of currently selected order in list view
 
-    Dim posClient As OSClient
+    Dim posClient As OSClient ' This window's client
     Private posTimer As DispatcherTimer ' Timer to refresh unpaid orders every tick
 
 
@@ -34,7 +35,7 @@ Public Class posWindow
         ' Initial update of the list view
         PosTick() ' Initial tick
 
-        ' Clear selectedOrder
+        ' Clear selectedOrder on window initialisation to prevent fetching an order that has already been paid
         selectedOrder = ""
     End Sub
 
@@ -54,7 +55,8 @@ Public Class posWindow
             valuesToAdd.TimeSubmitted = newOrder.TimeSubmittedString
             valuesToAdd.TimeCompleted = newOrder.TimeCompletedString
 
-            If ordersInListView.Contains(valuesToAdd.OrderId) = False Then
+            ' Checks if the order is already in the listview, if not then adds it to the listview
+            If ordersInListView.Contains(valuesToAdd.OrderId) = False Then ' Not in listview yet
                 lvOrders.Items.Add(valuesToAdd)
                 ordersInListView.Add(newOrder.OrderId)
             End If
@@ -75,8 +77,8 @@ Public Class posWindow
         If selectedOrder = "" Then ' If there is no order selected
             ' Show error message
             lblErrorMsg.Visibility = Visibility.Visible
-        Else
-            Dim nextWindow As orderInfoWindow = New orderInfoWindow(posClient, selectedOrder)
+        Else ' If there is an order selected, open the orderInfoWindow
+            Dim nextWindow As orderInfoWindow = New orderInfoWindow(posClient, selectedOrder) ' Passing in client and selected order
             nextWindow.Show()
             Me.Close()
         End If
@@ -89,8 +91,47 @@ Public Class posWindow
         End If
     End Sub
 
-    Private Sub btnHelp_Click(sender As Object, e As RoutedEventArgs) Handles btnHelp.Click
+    ' Handles button to open help window
+    Private Sub btnHelp_Click(sender As Object, e As RoutedEventArgs)
         Dim helpWindow As posWindowHelp = New posWindowHelp()
         helpWindow.Show()
+    End Sub
+
+    ' Handles OPEN button that opens up the order manually entered by table number on the bottom left of the window
+    Private Async Sub btnOpenTableNumber_Click() Handles btnOpenTableNumber.Click
+        If txtboxTableNum.Text = "" Then ' If the text box for manual table number entry is empty
+            ' Show error message
+            lblManualErrorMsg.Visibility = Visibility.Visible
+        Else ' Text box is not empty, open the orderInfoWindow
+            ' Search for order ID using the table number given
+            Try ' Try requesting an order using table number given
+                Dim manualOrder = Await posClient.GetOrder(tableNum:=Convert.ToInt32(txtboxTableNum.Text))
+                Dim nextWindow As orderInfoWindow = New orderInfoWindow(posClient, manualOrder.OrderId) ' Passing in client and order manually entered by table number
+                nextWindow.Show() ' Show next window
+                Me.Close()
+            Catch ex As Exception ' Invalid table number given
+                ' Show error message
+                lblManualErrorMsg.Visibility = Visibility.Visible
+            End Try
+        End If
+    End Sub
+
+    ' Handles enter button being pressed down 
+    Private Sub txtboxTableNum_KeyDown(sender As Object, e As KeyEventArgs) Handles txtboxTableNum.KeyDown
+        If e.Key = Key.Return Then ' If key pressed in enter then
+            btnOpenTableNumber_Click() ' Try open order by table number
+        End If
+    End Sub
+
+    Private Sub btnSortLv_Click(sender As Object, e As RoutedEventArgs) Handles btnSortLv.Click
+        Dim lvOrdersArr As New List(Of basicOrder)
+        For Each order As basicOrder In lvOrders.Items
+            lvOrdersArr.Add(order)
+        Next
+        lvOrders.Items.Clear()
+        'lvOrdersArr = lvOrdersArr.OrderBy(Function(order) order.TableNumber)
+        For Each order As basicOrder In lvOrdersArr
+            lvOrders.Items.Add(order)
+        Next
     End Sub
 End Class

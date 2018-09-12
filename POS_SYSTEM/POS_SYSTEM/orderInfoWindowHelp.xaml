@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POS_SYSTEM"
         mc:Ignorable="d"
-        Title="orderInfoWindowHelp" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" WindowStyle="None">
+        Title="Ordersoft POS Help" Height="200" Width="450" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
     <Grid>
-        <Label Content="Order details can be viewed on the left of the window.&#xA;&#xA;Enter the amount paid by the customer and click pay for change amount and receipt printing.&#xA;&#xA;" HorizontalAlignment="Left" Margin="197,131,0,0" VerticalAlignment="Top" Height="97" Width="532"/>
-        <Button Name="btnClose"  Content="Close" HorizontalAlignment="Left" Margin="559,330,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Order details can be viewed on the left of the&#xD;&#xA;window. Enter the amount paid by the &#xD;&#xA;customer and click pay for change amount &#xD;&#xA;and receipt printing.&#xA;&#xA;" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="145" Width="424" FontSize="20"/>
+        <Button Name="btnClose"  Content="Close" HorizontalAlignment="Left" Margin="248,111,0,0" VerticalAlignment="Top" Width="186" FontSize="20" Height="50"/>
     </Grid>
 </Window>

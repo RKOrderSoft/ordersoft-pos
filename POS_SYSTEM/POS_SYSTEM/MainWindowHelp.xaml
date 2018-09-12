@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POS_SYSTEM"
         mc:Ignorable="d"
-        Title="MainWindowHelp" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" WindowStyle="None">
+        Title="Ordersoft POS Help" Height="200" Width="450" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Label Content="Enter the address/IP on the homepage of the server then click connect." HorizontalAlignment="Left" Margin="197,131,0,0" VerticalAlignment="Top" Height="97" Width="514"/>
-        <Button Name="btnClose"  Content="Close" HorizontalAlignment="Left" Margin="559,330,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Enter the address/IP on the homepage of the&#xD;&#xA;server then click connect." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="70" Width="424"  FontSize="20"/>
+        <Button Name="btnClose"  Content="Close" HorizontalAlignment="Left" Margin="248,111,0,0" VerticalAlignment="Top" Width="186" Height="50"  FontSize="20"/>
     </Grid>
 </Window>

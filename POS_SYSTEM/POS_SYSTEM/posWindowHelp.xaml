@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POS_SYSTEM"
         mc:Ignorable="d"
-        Title="posWindowHelp" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" WindowStyle="None">
+        Title="Ordersoft POS Help" Height="200" Width="450" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
     <Grid>
-        <Label Content="Select an order,then click open order to view the order in more detail and pay." HorizontalAlignment="Left" Margin="196,130,0,0" VerticalAlignment="Top" Height="150" Width="476" RenderTransformOrigin="0.5,0.5">
+        <Label Content="Select an order by clicking on it, then click&#xD;&#xA;open order to view the order in more&#xD;&#xA;detail and pay. Or, manually input a table&#xD;&#xA;number and click OPEN." FontSize="20" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="136" Width="380" RenderTransformOrigin="0.5,0.5">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -17,6 +17,6 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Button Name="btnClose"  Content="Close" HorizontalAlignment="Left" Margin="559,330,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Name="btnClose"  Content="Close" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="188" Height="50" FontSize="20"/>
     </Grid>
 </Window>

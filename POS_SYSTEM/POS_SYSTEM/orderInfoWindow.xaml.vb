@@ -12,14 +12,17 @@ End Class
 
 ' An order object made for this window to simplify things
 Public Class POSOrder
+    ' Basic order information
     Public Property origOrder As OrderObject
     Public Property orderId As String
     Public Property tableNumber As Integer
     Public Property serverID As String
     Public Property notes As String
 
-    Public Property dishIds As List(Of POSDish)
+    ' All dishes in the order in a simple list of POSDishes
+    Public Property allDishes As List(Of POSDish)
 
+    ' Money amounts
     Public Property subtotal As Single
     Public Property tax As Single
     Public Property orderTotal As Single
@@ -33,7 +36,7 @@ Public Class Printer
 End Class
 
 Public Class orderInfoWindow
-    Dim charactersAllowed As New List(Of Char) ' Characters allow to be in the amount paid text box
+    Dim charactersAllowed As New List(Of Char) ' Characters allowed to be in the amount paid text box
     Dim orderClient As OSClient ' Client for this window
     Dim orderInfo As New POSOrder ' Object representing the order opened in this window from last window
 
@@ -43,7 +46,7 @@ Public Class orderInfoWindow
 
         ' Add any initialization after the InitializeComponent() call.
 
-        ' Passing in client
+        ' Passing in client from last window
         orderClient = client
 
         ' Characters allowed to be added to the text box
@@ -62,7 +65,7 @@ Public Class orderInfoWindow
         initialiseWindow(order) ' Initialises the window with information from the order selected on last window
     End Sub
 
-    ' Calculates and adds all required info in the window
+    ' Calculates and adds all required info into the window
     Public Async Sub initialiseWindow(order)
         Dim originalOrder = Await orderClient.GetOrder(order)
 
@@ -73,16 +76,16 @@ Public Class orderInfoWindow
         orderInfo.serverID = originalOrder.ServerId
         orderInfo.notes = originalOrder.Notes
 
-        ' Take string of dishes and convert to a list
-        orderInfo.dishIds = Await parseDishes(originalOrder.Dishes)
+        ' Take string of dishes and convert to a list of POSDishes for easier access to data
+        orderInfo.allDishes = Await parseDishes(originalOrder.Dishes)
 
         ' Calculate total and tax
-        For Each dish As POSDish In orderInfo.dishIds
+        For Each dish As POSDish In orderInfo.allDishes
             orderInfo.orderTotal = orderInfo.orderTotal + dish.totalPrice
         Next
         orderInfo.tax = orderInfo.orderTotal / 11
 
-        ' Displaying information
+        ' Displaying information on labels in window
         lblOrderId.Content = "Order ID: " + orderInfo.orderId
         lblServerID.Content = "Server ID: " + orderInfo.serverID
         lblTableNumber.Content = "Table Number: " + orderInfo.tableNumber.ToString()
@@ -92,15 +95,16 @@ Public Class orderInfoWindow
         lblTotal.Content = "Total: " + orderInfo.orderTotal.ToString("C2")
 
         ' Populate list box with dishes
-        For Each dish As POSDish In orderInfo.dishIds
+        For Each dish As POSDish In orderInfo.allDishes
             lvDishes.Items.Add(dish)
         Next
     End Sub
 
-    ' takes array of dishes and converts it into a list of POSDish
+    ' Takes array of dishes and converts it into a list of POSDish
     Public Async Function parseDishes(Dishes) As Task(Of List(Of POSDish))
         Dim posDishes As New List(Of POSDish)
 
+        ' Loop through the array of dishes and populates posDishes
         For Each d As String In Dishes
             Dim posDish As New POSDish
             posDish.dishId = Split(d, "/")(0) ' extracts ID
@@ -110,11 +114,11 @@ Public Class orderInfoWindow
                 posDish.name = dishInfo(0).Name
                 posDish.size = Split(d, "/")(1) ' extracts size
                 posDish.upgradePrice = dishInfo(0).UpgradePrice
-                ' calculate size upgrade cost
+                ' Calculate size upgrade cost
                 Dim indexOfSize = Array.IndexOf(dishInfo(0).Sizes, posDish.size)
-                posDish.totalPrice = dishInfo(0).BasePrice + (indexOfSize * dishInfo(0).UpgradePrice)
-            Else ' no size specified
-                posDish.totalPrice = dishInfo(0).BasePrice
+                posDish.totalPrice = (dishInfo(0).BasePrice + (indexOfSize * dishInfo(0).UpgradePrice)).ToString("C2")
+            Else ' No size specified, use base price
+                posDish.totalPrice = dishInfo(0).BasePrice.ToString("C2")
                 posDish.name = dishInfo(0).Name
                 posDish.size = "N/A"
             End If
@@ -199,7 +203,7 @@ Public Class orderInfoWindow
 
     End Sub
 
-    ' Cancel button
+    ' Cancel button, goes back to posWindow
     Private Sub btnCancel_Click(sender As Object, e As RoutedEventArgs) Handles btnCancel.Click
         Dim lastWindow As posWindow = New posWindow(orderClient)
         lastWindow.Show()
@@ -226,7 +230,7 @@ Public Class orderInfoWindow
         parInfo.Inlines.Add("Table number: " + orderInfo.tableNumber.ToString() + vbNewLine)
 
 
-        For Each dish As POSDish In orderInfo.dishIds
+        For Each dish As POSDish In orderInfo.allDishes
             parDishes.Inlines.Add(dish.name + "   " + dish.size + "   " + dish.totalPrice.ToString("C2") + vbNewLine)
         Next
 
@@ -241,10 +245,11 @@ Public Class orderInfoWindow
         sec.Blocks.Add(parTotals)
         receipt.Blocks.Add(sec)
 
-        ' Return flow document
+        ' Return flow document for printing
         Return receipt
     End Function
 
+    ' Handles opening help window
     Private Sub btnHelp_Click(sender As Object, e As RoutedEventArgs) Handles btnHelp.Click
         Dim helpWindow = New orderInfoWindowHelp()
         helpWindow.Show()

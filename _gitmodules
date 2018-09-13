@@ -1,0 +1,4 @@
+
+[submodule "POS_SYSTEM/ordersoft-client-cs"]
+	path = POS_SYSTEM/ordersoft-client-cs
+	url = git@github.com:rkordersoft/ordersoft-client-cs

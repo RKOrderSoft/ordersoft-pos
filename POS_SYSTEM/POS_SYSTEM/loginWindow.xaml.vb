@@ -25,7 +25,7 @@ Public Class loginWindow
         ' Try login
         Try
             Await loginWindowClient.Login(txtUser.Text, txtPassword.Password)
-        Catch ex As Exception
+        Catch ex As Exception ' If login fails due to connection issues, catch the error
             failed = True
             MessageBox.Show(ex.Message + ". Make sure login details are correct and server is still up.", "Error while logging in.")
         End Try
@@ -43,7 +43,6 @@ Public Class loginWindow
             ' Check access level
             Dim nextWindow As posWindow = New posWindow(loginWindowClient)
             nextWindow.Show()
-
             Me.Close()
         End If
     End Sub
@@ -65,6 +64,13 @@ Public Class loginWindow
     Private Sub txtPassword_KeyDown(sender As Object, e As KeyEventArgs) Handles txtPassword.KeyDown
         If e.Key = Key.Return Then
             login_onclick()
+        End If
+    End Sub
+
+    ' Handles close program button
+    Private Sub btnClose_Click(sender As Object, e As RoutedEventArgs) Handles btnClose.Click
+        If MessageBox.Show("Are you sure you want to close the program?", "My App", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) = MessageBoxResult.Yes Then
+            End
         End If
     End Sub
 End Class

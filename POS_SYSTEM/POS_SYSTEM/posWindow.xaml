@@ -25,15 +25,15 @@
             </ListView.View>
         </ListView>
 
-        <Button Name="btnHelp" Content="help me." HorizontalAlignment="Right" Margin="0,13,317,0" VerticalAlignment="Top" Width="75" Click="btnHelp_Click" Height="75" FontSize="20"/>
-
-        <Button Name="btnLogout" Content="Logout" HorizontalAlignment="Right" Margin="0,13,30,0" VerticalAlignment="Top" Width="282" Height="75" FontSize="20"/>
-        <Button x:Name="btnPay" Content="Open Selected Order" HorizontalAlignment="Right" Margin="0,0,30,12" VerticalAlignment="Bottom" Width="282" Height="75"/>
-        <Label Name="lblErrorMsg" Content="Please select an order first" HorizontalAlignment="Left" Margin="694,707,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="Red" Visibility="Hidden"/>
-        <TextBox Name="txtboxTableNum" HorizontalAlignment="Left" Height="48" Margin="30,711,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" FontSize="20"/>
-        <Label Content="Enter table number:" HorizontalAlignment="Left" Margin="30,674,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Button Name="btnOpenTableNumber" Content="OPEN" HorizontalAlignment="Left" Margin="285,684,0,0" VerticalAlignment="Top" Width="75" Height="75" FontSize="20"/>
-        <Label x:Name="lblManualErrorMsg" Content="Please enter a valid table number from the list" HorizontalAlignment="Left" Margin="365,733,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="Red" Visibility="Hidden"/>
-        <Button Name="btnSortLv" Content="Sort" HorizontalAlignment="Left" Margin="30,13,0,0" VerticalAlignment="Top" Width="75" Height="75" FontSize="20"/>
+        <Button Name="btnClose" Content="Close/Logout" HorizontalAlignment="Right" Margin="0,13,32,0" VerticalAlignment="Top" Width="140" Height="75" FontSize="20"/>
+        <Button x:Name="btnPay" Content="Open Selected Order" HorizontalAlignment="Right" Margin="0,0,30,12" VerticalAlignment="Bottom" Width="248" Height="66" FontSize="20"/>
+        <Label Name="lblErrorMsg" Content="Please select an order from the list first" HorizontalAlignment="Left" Margin="689,735,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="Red" Visibility="Visible" Width="222"/>
+        <TextBox Name="txtboxTableNum" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="48" Margin="30,0,0,12" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="250" FontSize="20"/>
+        <Label Content="Enter table number:" HorizontalAlignment="Left" Margin="30,0,0,60" VerticalAlignment="Bottom" FontSize="20"/>
+        <Button Name="btnOpenTableNumber" Content="Open" HorizontalAlignment="Left" Margin="285,0,0,12" VerticalAlignment="Bottom" Width="75" Height="48" FontSize="20"/>
+        <Label x:Name="lblManualErrorMsg" Content="Please enter a valid table number from the list" HorizontalAlignment="Left" Margin="365,733,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="Red" Visibility="Visible"/>
+        <Button Name="btnSortLv" Content="Sort" HorizontalAlignment="Left" Margin="30,13,0,0" VerticalAlignment="Top" Width="75" Height="75" FontSize="20" Visibility="Hidden"/>
+        <Label x:Name="lblTitle" Content="OrderSoft POS" Margin="30,27,0,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="36" Height="73" Width="498" HorizontalAlignment="Left"/>
+        <Button Name="btnHelp1" Content="Help" HorizontalAlignment="Right" Margin="0,13,177,0" VerticalAlignment="Top" Width="140" Height="75" FontSize="20"/>
     </Grid>
 </Window>

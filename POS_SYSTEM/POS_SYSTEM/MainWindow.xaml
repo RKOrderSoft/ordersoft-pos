@@ -7,15 +7,16 @@
         mc:Ignorable="d"
         Title="Ordersoft POS" Height="400" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Label Name="lblTitle" Content="Welcome To &#xD;&#xA;OrderSoft POS" HorizontalAlignment="Left" Margin="25,25,-15,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="36"/>
-        <TextBox Name="txtIP" HorizontalAlignment="Left" Height="45" Margin="82,225,0,0" TextWrapping="Wrap" Text="10.0.0.95:8080" VerticalAlignment="Top" Width="290"  FontSize="20"/>
-        <Label Name="lblIP" Content="Server IP" HorizontalAlignment="Left" Margin="75,151,0,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="20"/>
+        <Label Name="lblTitle" Content="Welcome To &#xD;&#xA;OrderSoft POS" HorizontalAlignment="Left" Margin="130,18,0,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="36"/>
+        <TextBox Name="txtIP" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="45" Margin="117,186,0,0" TextWrapping="Wrap" Text="ordersoft.pw:3141" VerticalAlignment="Top" Width="290"  FontSize="20"/>
+        <Label Name="lblIP" Content="Server IP" HorizontalAlignment="Left" Margin="117,147,0,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="20"/>
 
-        <Button Name="btnConnect" IsEnabled="True" Content="Connect" HorizontalAlignment="Left" Margin="75,275,0,0" VerticalAlignment="Top" Width="181" Height="71"  FontSize="20"/>
-        <Label Name="lblhttp" Content="http://" HorizontalAlignment="Left" Margin="10,233,0,0" VerticalAlignment="Top"  FontSize="20"/>
-        <Label Name="lblslash" Content="/" HorizontalAlignment="Left" Margin="372,233,0,0" VerticalAlignment="Top"  FontSize="20"/>
+        <Button Name="btnConnect" IsEnabled="True" Content="Connect" HorizontalAlignment="Left" Margin="160,266,0,0" VerticalAlignment="Top" Width="181" Height="71"  FontSize="20"/>
+        <Label Name="lblhttp" Content="http://" HorizontalAlignment="Left" Margin="50,190,0,0" VerticalAlignment="Top"  FontSize="20"/>
+        <Label Name="lblslash" Content="/" HorizontalAlignment="Left" Margin="407,190,0,0" VerticalAlignment="Top"  FontSize="20"/>
 
-        <Button Name="btnHelp"  Content="help me." HorizontalAlignment="Left" Margin="407,10,0,0" VerticalAlignment="Top" Width="75" Click="btnHelp_Click" Height="75"  FontSize="20"/>
+        <Button Name="btnHelp"  Content="Help" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="48" Click="btnHelp_Click" Height="48"  FontSize="12"/>
+        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Right" Margin="0,110,12,0" VerticalAlignment="Top" Width="75" Height="75" FontSize="20" Visibility="Hidden"/>
 
     </Grid>
 </Window>

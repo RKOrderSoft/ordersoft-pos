@@ -2,6 +2,8 @@
 Imports System.Windows.Threading
 Imports System.Linq
 
+' A class made for adding it to the list view
+' Simplifies objects in list view to improve performance
 Public Class basicOrder
     Public Property OrderId As String
     Public Property TableNumber As String
@@ -10,7 +12,7 @@ Public Class basicOrder
 End Class
 
 Public Class posWindow
-
+    Dim charactersAllowed As New List(Of Char) ' Characters allowed to be in the table number text box
     Dim ordersInListView As New List(Of String) ' A list of OrderIDs keeping track of what orders are already in the list view
     Dim selectedOrder As String = "" ' OrderID of currently selected order in list view
 
@@ -26,14 +28,33 @@ Public Class posWindow
         ' Passing through client from loginWindow
         posClient = client
 
+        ' Clear ordersInListView that may still be left from previous session
+        ordersInListView.Clear()
+
+        ' Characters allowed to be added to the text box
+        charactersAllowed.Add("0")
+        charactersAllowed.Add("1")
+        charactersAllowed.Add("2")
+        charactersAllowed.Add("3")
+        charactersAllowed.Add("4")
+        charactersAllowed.Add("5")
+        charactersAllowed.Add("6")
+        charactersAllowed.Add("7")
+        charactersAllowed.Add("8")
+        charactersAllowed.Add("9")
+
         ' Timer setup
         posTimer = New DispatcherTimer
         posTimer.Interval = TimeSpan.FromMilliseconds(3000) ' Tick every 3 seconds
         AddHandler posTimer.Tick, AddressOf PosTick
-        posTimer.Start()
+        posTimer.Start() ' Start timer
 
         ' Initial update of the list view
         PosTick() ' Initial tick
+
+        ' Make error message labels hidden
+        lblErrorMsg.Visibility = Visibility.Hidden
+        lblManualErrorMsg.Visibility = Visibility.Hidden
 
         ' Clear selectedOrder on window initialisation to prevent fetching an order that has already been paid
         selectedOrder = ""
@@ -50,6 +71,7 @@ Public Class posWindow
             Dim newOrder = Await posClient.GetOrder(orderId:=id)
             Dim valuesToAdd As New basicOrder
 
+            ' Adding order details to the basicOrder that's going to be added to the listview
             valuesToAdd.OrderId = newOrder.OrderId
             valuesToAdd.TableNumber = Convert.ToString(newOrder.TableNumber)
             valuesToAdd.TimeSubmitted = newOrder.TimeSubmittedString
@@ -57,8 +79,8 @@ Public Class posWindow
 
             ' Checks if the order is already in the listview, if not then adds it to the listview
             If ordersInListView.Contains(valuesToAdd.OrderId) = False Then ' Not in listview yet
-                lvOrders.Items.Add(valuesToAdd)
-                ordersInListView.Add(newOrder.OrderId)
+                lvOrders.Items.Add(valuesToAdd) ' Add to listview
+                ordersInListView.Add(newOrder.OrderId) ' Add to list keeping track of which orders are already in the listview
             End If
 
         Next
@@ -82,19 +104,6 @@ Public Class posWindow
             nextWindow.Show()
             Me.Close()
         End If
-    End Sub
-
-    ' Logout button click
-    Private Sub btnLogout_Click(sender As Object, e As RoutedEventArgs) Handles btnLogout.Click
-        If MessageBox.Show("Are you sure you want to log out?", "My App", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) = MessageBoxResult.Yes Then
-            End
-        End If
-    End Sub
-
-    ' Handles button to open help window
-    Private Sub btnHelp_Click(sender As Object, e As RoutedEventArgs)
-        Dim helpWindow As posWindowHelp = New posWindowHelp()
-        helpWindow.Show()
     End Sub
 
     ' Handles OPEN button that opens up the order manually entered by table number on the bottom left of the window
@@ -123,15 +132,49 @@ Public Class posWindow
         End If
     End Sub
 
-    Private Sub btnSortLv_Click(sender As Object, e As RoutedEventArgs) Handles btnSortLv.Click
-        Dim lvOrdersArr As New List(Of basicOrder)
-        For Each order As basicOrder In lvOrders.Items
-            lvOrdersArr.Add(order)
-        Next
-        lvOrders.Items.Clear()
-        'lvOrdersArr = lvOrdersArr.OrderBy(Function(order) order.TableNumber)
-        For Each order As basicOrder In lvOrdersArr
-            lvOrders.Items.Add(order)
-        Next
+    ' Close and logout button click
+    Private Sub btnClose_Click(sender As Object, e As RoutedEventArgs) Handles btnClose.Click
+        If MessageBox.Show("Are you sure you want to logout and close the program?", "My App", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) = MessageBoxResult.Yes Then
+            End
+        End If
     End Sub
+
+    ' Data validation for table number text box
+    ' Makes sure only integers are able to be typed in the text box for table number
+    Private Sub txtboxTableNum_TextChanged(sender As Object, e As TextChangedEventArgs) Handles txtboxTableNum.TextChanged
+        Dim text As String = txtboxTableNum.Text
+        Dim Letter As String
+        Dim SelectionIndex As Integer = txtboxTableNum.SelectionStart
+        Dim Change As Integer
+
+        For x As Integer = 0 To txtboxTableNum.Text.Length - 1
+            Letter = txtboxTableNum.Text.Substring(x, 1)
+            If charactersAllowed.Contains(Letter) = False Then ' If the character entered is in the allowed characters array
+                text = text.Replace(Letter, String.Empty)
+                Change = 1
+            End If
+        Next
+
+        txtboxTableNum.Text = text
+    End Sub
+
+    ' Handle help window opening button
+    Private Sub btnHelp1_Click(sender As Object, e As RoutedEventArgs) Handles btnHelp1.Click
+        Dim helpWindow As posWindowHelp = New posWindowHelp()
+        helpWindow.Show()
+    End Sub
+
+    ' A list view sorting sub that theoretically should work but doesn't
+    ' Handles sort button click
+    'Private Sub btnSortLv_Click(sender As Object, e As RoutedEventArgs) Handles btnSortLv.Click
+    '   Dim lvOrdersArr As New List(Of basicOrder)
+    '   For Each order As basicOrder In lvOrders.Items
+    '        lvOrdersArr.Add(order)
+    '   Next
+    '    lvOrders.Items.Clear() ' Clear listview before adding orders back into it
+    'lvOrdersArr = lvOrdersArr.OrderBy(Function(order) order.TableNumber) ' Uses OrderBy to sort list before adding back to listview
+    'For Each order As basicOrder In lvOrdersArr ' Loop through list
+    '       lvOrders.Items.Add(order) ' Add to listview
+    'Next
+    'End Sub
 End Class

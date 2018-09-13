@@ -35,8 +35,8 @@ Class MainWindow
             btnConnect.IsEnabled = True
         Else ' Connection succeeded, open login window
             Dim nextWindow As loginWindow = New loginWindow(client)
-            Me.Hide()
             nextWindow.Show()
+            Me.Close()
         End If
     End Sub
 
@@ -51,5 +51,12 @@ Class MainWindow
     Private Sub btnHelp_Click(sender As Object, e As RoutedEventArgs)
         Dim helpWindow = New MainWindowHelp()
         helpWindow.Show()
+    End Sub
+
+    ' Handles close program button
+    Private Sub btnClose_Click(sender As Object, e As RoutedEventArgs) Handles btnClose.Click
+        If MessageBox.Show("Are you sure you want to close the program?", "My App", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) = MessageBoxResult.Yes Then
+            End
+        End If
     End Sub
 End Class

@@ -40,7 +40,6 @@ Public Class loginWindow
 
             btnLogin.IsEnabled = True
         Else ' Login succeeded
-            ' Check access level
             Dim nextWindow As posWindow = New posWindow(loginWindowClient)
             nextWindow.Show()
             Me.Close()

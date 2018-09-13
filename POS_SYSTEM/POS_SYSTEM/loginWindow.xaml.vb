@@ -27,7 +27,7 @@ Public Class loginWindow
             Await loginWindowClient.Login(txtUser.Text, txtPassword.Password)
         Catch ex As Exception
             failed = True
-            MessageBox.Show(ex.ToString, "Error while logging in")
+            MessageBox.Show(ex.Message + ". Make sure login details are correct and server is still up.", "Error while logging in.")
         End Try
 
         ' Login failed

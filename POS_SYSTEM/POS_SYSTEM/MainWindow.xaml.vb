@@ -24,7 +24,7 @@ Class MainWindow
         Catch ex As Exception
             ' Error was thrown during initialisation
             failed = True
-            MessageBox.Show(ex.ToString, "An error occurred while connecting")
+            MessageBox.Show(ex.Message + ". Make sure the server is up and IP is correct.", "An error occurred while connecting")
         End Try
 
         ' IP failed to connect

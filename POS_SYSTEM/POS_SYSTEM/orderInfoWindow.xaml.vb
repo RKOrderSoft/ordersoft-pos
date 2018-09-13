@@ -17,6 +17,8 @@ Public Class POSOrder
     Public Property orderId As String
     Public Property tableNumber As Integer
     Public Property serverID As String
+    Public Property serverInfo As UserObject
+    Public Property serverName As String
     Public Property notes As String
 
     ' All dishes in the order in a simple list of POSDishes
@@ -76,6 +78,10 @@ Public Class orderInfoWindow
         orderInfo.serverID = originalOrder.ServerId
         orderInfo.notes = originalOrder.Notes
 
+        ' Get the server name from the server ID
+        orderInfo.serverInfo = Await orderClient.GetUserDetails(orderInfo.serverID)
+        orderInfo.serverName = orderInfo.serverInfo.Username
+
         ' Take string of dishes and convert to a list of POSDishes for easier access to data
         orderInfo.allDishes = Await parseDishes(originalOrder.Dishes)
 
@@ -87,7 +93,7 @@ Public Class orderInfoWindow
 
         ' Displaying information on labels in window
         lblOrderId.Content = "Order ID: " + orderInfo.orderId
-        lblServerID.Content = "Server ID: " + orderInfo.serverID
+        lblServerID.Content = "Server ID: " + orderInfo.serverName
         lblTableNumber.Content = "Table Number: " + orderInfo.tableNumber.ToString()
         lblNotes.Content = "Notes: " + orderInfo.notes
         lblTax.Content = "Tax: " + orderInfo.tax.ToString("C2")
@@ -185,15 +191,17 @@ Public Class orderInfoWindow
                     receipt.Name = "FlowDoc"
 
                     Dim idpSource As IDocumentPaginatorSource = receipt
-                    prnt.PrintDocument(idpSource.DocumentPaginator, "Receipt printing")
+                    If prnt.ShowDialog() = True Then
+                        prnt.PrintDocument(idpSource.DocumentPaginator, "Receipt printing")
+                    End If
 
                     ' Reopen posWindow
                     Dim lastWindow As posWindow = New posWindow(orderClient)
-                    lastWindow.Show()
-                    Me.Close()
-                ElseIf msgboxResult = MessageBoxResult.No Then
-                    ' Reopen posWindow
-                    Dim lastWindow As posWindow = New posWindow(orderClient)
+                        lastWindow.Show()
+                        Me.Close()
+                    ElseIf msgboxResult = MessageBoxResult.No Then
+                        ' Reopen posWindow
+                        Dim lastWindow As posWindow = New posWindow(orderClient)
                     lastWindow.Show()
                     Me.Close()
                 End If
@@ -226,13 +234,36 @@ Public Class orderInfoWindow
         parTotals.FontFamily = New FontFamily("Courier New")
 
         ' Adding info to flow document
+        ' Basic info
         parInfo.Inlines.Add("Time paid: " + orderInfo.origOrder.TimePaidString + vbNewLine)
         parInfo.Inlines.Add("Table number: " + orderInfo.tableNumber.ToString() + vbNewLine)
+        parInfo.Inlines.Add("Server: " + orderInfo.serverName + vbNewLine)
 
+        ' Adding dishes to the flow document
+
+        ' Determine length of longest string in dish names to format receipt
+        Dim lenLongestDish As Integer = 0
+        For Each dish As POSDish In orderInfo.allDishes
+            If lenLongestDish < Len(dish.name) Then ' If the length of dish name is longer than lenLongestDish
+                lenLongestDish = Len(dish.name) ' Set the length of the longest dish name to the length of the dish name
+            End If
+        Next
+
+        ' Determine length of longest string in dish sizes to format receipt
+        Dim lenLongestSize As Integer = 0
+        For Each dish As POSDish In orderInfo.allDishes
+            If lenLongestSize < Len(dish.size) Then ' If the length of dish size is longer than lenLongestSize
+                lenLongestSize = Len(dish.size) ' Set the length of the longest dish size to the length of the dish size
+            End If
+        Next
 
         For Each dish As POSDish In orderInfo.allDishes
-            parDishes.Inlines.Add(dish.name + "   " + dish.size + "   " + dish.totalPrice.ToString("C2") + vbNewLine)
+            parDishes.Inlines.Add(dish.name + New String(" ", lenLongestDish - Len(dish.name) + 1) + dish.size + New String(" ", lenLongestSize - Len(dish.size) + 1) + dish.totalPrice.ToString("C2") + vbNewLine)
         Next
+
+        'For Each dish As POSDish In orderInfo.allDishes
+        '    parDishes.Inlines.Add(dish.name + "   " + dish.size + "   " + dish.totalPrice.ToString("C2") + vbNewLine)
+        'Next
 
         parTotals.Inlines.Add("Notes: " + orderInfo.notes + vbNewLine)
         parTotals.Inlines.Add("Tax: " + orderInfo.tax.ToString("C2") + vbNewLine)

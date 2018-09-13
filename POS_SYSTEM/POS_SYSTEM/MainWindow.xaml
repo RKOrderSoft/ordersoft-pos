@@ -8,7 +8,7 @@
         Title="Ordersoft POS" Height="400" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label Name="lblTitle" Content="Welcome To &#xD;&#xA;OrderSoft POS" HorizontalAlignment="Left" Margin="25,25,-15,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="36"/>
-        <TextBox Name="txtIP" HorizontalAlignment="Left" Height="45" Margin="82,225,0,0" TextWrapping="Wrap" Text="orderhard.soundclout.me:3141" VerticalAlignment="Top" Width="290"  FontSize="20"/>
+        <TextBox Name="txtIP" HorizontalAlignment="Left" Height="45" Margin="82,225,0,0" TextWrapping="Wrap" Text="10.0.0.95:8080" VerticalAlignment="Top" Width="290"  FontSize="20"/>
         <Label Name="lblIP" Content="Server IP" HorizontalAlignment="Left" Margin="75,151,0,0" VerticalAlignment="Top" FontFamily="Circular Std Medium" FontSize="20"/>
 
         <Button Name="btnConnect" IsEnabled="True" Content="Connect" HorizontalAlignment="Left" Margin="75,275,0,0" VerticalAlignment="Top" Width="181" Height="71"  FontSize="20"/>
